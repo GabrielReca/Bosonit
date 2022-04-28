@@ -1,12 +1,15 @@
 package com.example.DB1JPA.infrastructure;
 
-import com.example.DB1JPA.clases.Persona;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class PersonaInputDTO implements Serializable {
 
     private int id;
@@ -22,28 +25,6 @@ public class PersonaInputDTO implements Serializable {
     private String imagen_url;
     private Date termination_date;
 
-    public boolean getActive()
-    {
-        return this.active;
-    }
 
-    public PersonaInputDTO()
-    {
 
-    }
-
-    public PersonaInputDTO(Persona persona)
-    {
-        setUsuario(persona.getUsuario());
-        setPassword(persona.getPassword());
-        setName(persona.getName());
-        setSurname(persona.getSurname());
-        setCompany_email(persona.getCompany_email());
-        setPersonal_email(persona.getPersonal_email());
-        setCity(persona.getCity());
-        setActive(persona.getActive());
-        setCreated_date(persona.getCreated_date());
-        setImagen_url(persona.getImagen_url());
-        setTermination_date(persona.getTermination_date());
-    }
 }

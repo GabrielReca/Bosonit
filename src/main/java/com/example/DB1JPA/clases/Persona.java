@@ -1,8 +1,8 @@
 package com.example.DB1JPA.clases;
 
 import com.example.DB1JPA.infrastructure.PersonaInputDTO;
-import com.example.DB1JPA.infrastructure.PersonaOutputDTO;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,12 +10,13 @@ import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "persona", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
 public class Persona implements Serializable {
 
-    @GeneratedValue
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column
     private String usuario;
@@ -40,30 +41,6 @@ public class Persona implements Serializable {
     @Column
     private Date termination_date;
 
-    public boolean getActive()
-    {
-        return this.active;
-    }
-
-    public Persona(){
-
-    }
-
-    public Persona(PersonaOutputDTO personaDTO)
-    {
-        setUsuario(personaDTO.getUsuario());
-        setPassword(personaDTO.getPassword());
-        setName(personaDTO.getName());
-        setSurname(personaDTO.getSurname());
-        setCompany_email(personaDTO.getCompany_email());
-        setPersonal_email(personaDTO.getPersonal_email());
-        setCity(personaDTO.getCity());
-        setActive(personaDTO.getActive());
-        setCreated_date(personaDTO.getCreated_date());
-        setImagen_url(personaDTO.getImagen_url());
-        setTermination_date(personaDTO.getTermination_date());
-    }
-
     public Persona(PersonaInputDTO personaDTO)
     {
         setUsuario(personaDTO.getUsuario());
@@ -73,7 +50,7 @@ public class Persona implements Serializable {
         setCompany_email(personaDTO.getCompany_email());
         setPersonal_email(personaDTO.getPersonal_email());
         setCity(personaDTO.getCity());
-        setActive(personaDTO.getActive());
+        setActive(personaDTO.isActive());
         setCreated_date(personaDTO.getCreated_date());
         setImagen_url(personaDTO.getImagen_url());
         setTermination_date(personaDTO.getTermination_date());
