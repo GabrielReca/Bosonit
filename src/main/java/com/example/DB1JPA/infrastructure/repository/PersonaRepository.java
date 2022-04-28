@@ -1,6 +1,6 @@
-package com.example.DB1JPA.repository;
+package com.example.DB1JPA.infrastructure.repository;
 
-import com.example.DB1JPA.clases.Persona;
+import com.example.DB1JPA.domain.Persona;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

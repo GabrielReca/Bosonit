@@ -1,7 +1,7 @@
-package com.example.DB1JPA.service;
+package com.example.DB1JPA.application.port;
 
-import com.example.DB1JPA.infrastructure.PersonaInputDTO;
-import com.example.DB1JPA.infrastructure.PersonaOutputDTO;
+import com.example.DB1JPA.infrastructure.dto.input.PersonaInputDTO;
+import com.example.DB1JPA.infrastructure.dto.output.PersonaOutputDTO;
 
 import java.util.List;
 

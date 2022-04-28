@@ -1,8 +1,8 @@
-package com.example.DB1JPA.controller;
+package com.example.DB1JPA.infrastructure.controller;
 
-import com.example.DB1JPA.infrastructure.PersonaInputDTO;
-import com.example.DB1JPA.infrastructure.PersonaOutputDTO;
-import com.example.DB1JPA.service.PersonaService;
+import com.example.DB1JPA.infrastructure.dto.input.PersonaInputDTO;
+import com.example.DB1JPA.infrastructure.dto.output.PersonaOutputDTO;
+import com.example.DB1JPA.application.port.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.example.DB1JPA.infrastructure;
+package com.example.DB1JPA.infrastructure.dto.output;
 
-import com.example.DB1JPA.clases.Persona;
+import com.example.DB1JPA.domain.Persona;
 import lombok.*;
 
 import java.io.Serializable;

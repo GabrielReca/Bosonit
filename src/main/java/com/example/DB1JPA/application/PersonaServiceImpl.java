@@ -1,9 +1,10 @@
-package com.example.DB1JPA.service;
+package com.example.DB1JPA.application;
 
-import com.example.DB1JPA.clases.Persona;
-import com.example.DB1JPA.infrastructure.PersonaInputDTO;
-import com.example.DB1JPA.infrastructure.PersonaOutputDTO;
-import com.example.DB1JPA.repository.PersonaRepository;
+import com.example.DB1JPA.application.port.PersonaService;
+import com.example.DB1JPA.domain.Persona;
+import com.example.DB1JPA.infrastructure.dto.input.PersonaInputDTO;
+import com.example.DB1JPA.infrastructure.dto.output.PersonaOutputDTO;
+import com.example.DB1JPA.infrastructure.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PersonaServiceImpl implements PersonaService{
+public class PersonaServiceImpl implements PersonaService {
 
     @Autowired
     PersonaRepository pr;

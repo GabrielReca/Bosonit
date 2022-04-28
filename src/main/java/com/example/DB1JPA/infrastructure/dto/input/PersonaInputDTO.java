@@ -1,4 +1,4 @@
-package com.example.DB1JPA.infrastructure;
+package com.example.DB1JPA.infrastructure.dto.input;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
