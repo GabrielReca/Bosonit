@@ -1,8 +1,10 @@
 package com.example.DB1JPA.domain;
 
 import com.example.DB1JPA.infrastructure.dto.input.PersonaInputDTO;
+import com.example.DB1JPA.utils.StringIdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +18,7 @@ public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column
     private String usuario;
@@ -40,6 +42,9 @@ public class Persona implements Serializable {
     private String imagen_url;
     @Column
     private Date termination_date;
+
+/*    @OneToOne(mappedBy = "id_profesor")
+    private String id_profesor;*/
 
     public Persona(PersonaInputDTO personaDTO)
     {

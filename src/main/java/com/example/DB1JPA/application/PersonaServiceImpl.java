@@ -32,7 +32,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public PersonaOutputDTO modificarPersona(int id, PersonaInputDTO personaInputDTO) throws Exception {
+    public PersonaOutputDTO modificarPersona(String id, PersonaInputDTO personaInputDTO) throws Exception {
         if(personaInputDTO.getUsuario() == null)
             throw new Exception("usuario puede ser nulo");
         else if(personaInputDTO.getUsuario().length() > 10 || personaInputDTO.getUsuario().length() < 6)
@@ -47,7 +47,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public PersonaOutputDTO buscarPorID(int id) throws Exception {
+    public PersonaOutputDTO buscarPorID(String id) throws Exception {
         Persona persona = pr.findById(id).orElseThrow(() -> new Exception("id no encontrado"));
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(persona);
         return personaOutputDTO;
@@ -81,7 +81,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public PersonaOutputDTO eliminarUsuario(Integer id) throws Exception {
+    public PersonaOutputDTO eliminarUsuario(String id) throws Exception {
         Persona persona = pr.findById(id).get();
         PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(persona);
         pr.deleteById(id);

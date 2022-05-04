@@ -17,7 +17,7 @@ public class PersonaController {
     PersonaService ps;
 
     @GetMapping("/busqueda/id/{id}")
-    public ResponseEntity busquedaID(@PathVariable int id) throws Exception {
+    public ResponseEntity busquedaID(@PathVariable String id) throws Exception {
         PersonaOutputDTO personaOutputDTO;
         try{
             personaOutputDTO = ps.buscarPorID(id);
@@ -45,7 +45,7 @@ public class PersonaController {
     }
 
     @PutMapping("/modificar/{id}")
-    public ResponseEntity modificarPersona(@PathVariable int id, @RequestBody PersonaInputDTO personaDto) throws Exception
+    public ResponseEntity modificarPersona(@PathVariable String id, @RequestBody PersonaInputDTO personaDto) throws Exception
     {
         PersonaOutputDTO personaOutputDTO;
         try {
@@ -68,7 +68,7 @@ public class PersonaController {
     }
 
     @DeleteMapping("/borrar/{id}")
-    public ResponseEntity borrarPersona(@PathVariable Integer id) throws Exception {
+    public ResponseEntity borrarPersona(@PathVariable String id) throws Exception {
         PersonaOutputDTO personaOutputDTO = ps.eliminarUsuario(id);
         return ResponseEntity.ok(personaOutputDTO);
     }
