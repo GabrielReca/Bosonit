@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "simpleFeign", url = "http://localhost:8081/")
 public interface IFeignServer {
 
-    @GetMapping("profesor/id/{id}")
+    @GetMapping("DB2/persona/profesor/id/{id}")
     ResponseEntity<ProfesorOutputDTO> callServer(@PathVariable("id") int id);
 }

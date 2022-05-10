@@ -113,7 +113,7 @@ public class PersonaController {
     @GetMapping("/profesor/{id}")
     ProfesorOutputDTO GETgetProfesor(@PathVariable int id)
     {
-        ResponseEntity<ProfesorOutputDTO> rs = new RestTemplate().getForEntity("http://localhost:8081/profesor/id/"+id, ProfesorOutputDTO.class);
+        ResponseEntity<ProfesorOutputDTO> rs = new RestTemplate().getForEntity("http://localhost:8081/DB2/persona/profesor/id/"+id, ProfesorOutputDTO.class);
         ProfesorOutputDTO profesorOutputDTO = rs.getBody();
         return profesorOutputDTO;
     }

@@ -6,6 +6,7 @@ import com.example.DB2.infrastructure.dto.input.PersonaInputDTO;
 import com.example.DB2.infrastructure.dto.output.EstudiantePersonaOutputDTO;
 import com.example.DB2.infrastructure.dto.output.PersonaOutputDTO;
 import com.example.DB2.application.port.PersonaService;
+import com.example.DB2.infrastructure.dto.output.ProfesorOutputDTO;
 import com.example.DB2.infrastructure.dto.output.ProfesorPersonaOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,12 @@ public class PersonaControllerDB2 {
 
     @Autowired
     ProfesorService pfr;
+
+    @GetMapping("/profesor/id/{id}")
+    public ProfesorOutputDTO buscarProfesorAsociado(@PathVariable int id) throws Exception {
+        ProfesorOutputDTO profesorOutputDTO = ps.buscarProfesor(id);
+        return profesorOutputDTO;
+    }
 
     @GetMapping(value = "/busqueda/id/{id}", params = "outputType")
     public ResponseEntity busquedaID(@PathVariable int id, @RequestParam String outputType) throws Exception {

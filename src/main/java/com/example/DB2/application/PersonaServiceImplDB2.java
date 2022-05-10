@@ -7,6 +7,7 @@ import com.example.DB2.domain.ProfesorDB2;
 import com.example.DB2.infrastructure.dto.input.PersonaInputDTO;
 import com.example.DB2.infrastructure.dto.output.EstudiantePersonaOutputDTO;
 import com.example.DB2.infrastructure.dto.output.PersonaOutputDTO;
+import com.example.DB2.infrastructure.dto.output.ProfesorOutputDTO;
 import com.example.DB2.infrastructure.dto.output.ProfesorPersonaOutputDTO;
 import com.example.DB2.infrastructure.repository.PersonaRepositoryDB2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,14 @@ public class PersonaServiceImplDB2 implements PersonaService {
         ProfesorDB2 profesor = persona.getProfesor();
         ProfesorPersonaOutputDTO profesorPersonaOutputDTO = new ProfesorPersonaOutputDTO(profesor, persona);
         return profesorPersonaOutputDTO;
+    }
+
+    @Override
+    public ProfesorOutputDTO buscarProfesor(int id) throws Exception {
+        PersonaDB2 persona = pr.findById(id).orElseThrow(() -> new Exception("id no encontrado"));
+        ProfesorDB2 profesor = persona.getProfesor();
+        ProfesorOutputDTO profesorOutputDTO = new ProfesorOutputDTO(profesor);
+        return profesorOutputDTO;
     }
 
     @Override
