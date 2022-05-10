@@ -1,6 +1,6 @@
-package com.example.DB1JPA.infrastructure.dto.output;
+package com.example.DB2.infrastructure.dto.output;
 
-import com.example.DB1JPA.domain.PersonaDB1;
+import com.example.DB2.domain.PersonaDB2;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class PersonaOutputDTO implements Serializable {
 
-    private int id;
+    private int  id;
     private String usuario;
     private String password;
     private String name;
@@ -26,7 +26,7 @@ public class PersonaOutputDTO implements Serializable {
     private Date termination_date;
 
 
-    public PersonaOutputDTO(PersonaDB1 persona)
+    public PersonaOutputDTO(PersonaDB2 persona)
     {
         setId(persona.getId());
         setUsuario(persona.getUsuario());

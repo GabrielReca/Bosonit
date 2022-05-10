@@ -1,16 +1,16 @@
-package com.example.DB1JPA.infrastructure.dto.input;
+package com.example.DB2.infrastructure.dto.input;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.DB2.domain.PersonaDB2;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class PersonaInputDTO implements Serializable {
+public class ProfesorPersonaInput implements Serializable {
+
+    private String id_profesor;
+    private String comentarios;
+    private String rama;
+    private PersonaDB2 persona;
 
     private int id;
     private String usuario;
@@ -24,7 +24,4 @@ public class PersonaInputDTO implements Serializable {
     private Date created_date;
     private String imagen_url;
     private Date termination_date;
-
-
-
 }

@@ -1,5 +1,7 @@
-package com.example.DB1JPA.infrastructure.dto.input;
+package com.example.BS9.infrastructure.dto.input;
 
+import com.example.BS9.domain.Estudiante;
+import com.example.BS9.domain.Profesor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +26,8 @@ public class PersonaInputDTO implements Serializable {
     private Date created_date;
     private String imagen_url;
     private Date termination_date;
+    private Estudiante estudiante;
+    private Profesor profesor;
 
 
 

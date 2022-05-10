@@ -1,7 +1,11 @@
-package com.example.DB1JPA.infrastructure.dto.output;
+package com.example.BS9.infrastructure.dto.output;
 
-import com.example.DB1JPA.domain.PersonaDB1;
-import lombok.*;
+import com.example.BS9.domain.Estudiante;
+import com.example.BS9.domain.Persona;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,9 +14,14 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonaOutputDTO implements Serializable {
+public class EstudiantePersonaOutputDTO implements Serializable {
 
-    private int id;
+    private String id;
+    private int numeroHorasSemanales;
+    private String rama;
+    private String comentarios;
+    private String id_profesor;
+
     private String usuario;
     private String password;
     private String name;
@@ -25,10 +34,14 @@ public class PersonaOutputDTO implements Serializable {
     private String imagen_url;
     private Date termination_date;
 
-
-    public PersonaOutputDTO(PersonaDB1 persona)
+    public EstudiantePersonaOutputDTO(Estudiante estudiante, Persona persona)
     {
-        setId(persona.getId());
+        setId(estudiante.getId());
+        setNumeroHorasSemanales(estudiante.getNumeroHorasSemanales());
+        setRama(estudiante.getRama());
+        setComentarios(estudiante.getComentarios());
+        /*setId_profesor(estudiante.getId_profesor());*/
+
         setUsuario(persona.getUsuario());
         setPassword(persona.getPassword());
         setName(persona.getName());
