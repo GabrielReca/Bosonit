@@ -1,4 +1,4 @@
-package com.example.DB1JPA.infrastructure.errors;
+package com.example.cors.infrastructure.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

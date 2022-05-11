@@ -8,6 +8,7 @@ import com.example.DB1JPA.infrastructure.errors.UnprocessableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import java.util.List;
 
@@ -52,8 +53,11 @@ public class PersonaControllerDB1 {
         PersonaOutputDTO personaOutputDTO;
         try {
             personaOutputDTO = ps.modificarPersona(id, personaDto);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("usuario puede ser nulo");
+        } catch (NotFoundException e) {
+            throw new BeanNotFoundException("bean: " +id+ " no encontrado");
+        }catch (UnprocessableException e)
+        {
+            throw new UnprocessableException("faltan campos sin insertar");
         }
         return ResponseEntity.ok(personaOutputDTO);
     }
@@ -71,7 +75,13 @@ public class PersonaControllerDB1 {
 
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity borrarPersona(@PathVariable Integer id) throws Exception {
-        PersonaOutputDTO personaOutputDTO = ps.eliminarUsuario(id);
+        PersonaOutputDTO personaOutputDTO;
+        try {
+            personaOutputDTO = ps.eliminarUsuario(id);
+        }catch (Exception e)
+        {
+            throw new BeanNotFoundException("bean: " +id+ " no encontrado");
+        }
         return ResponseEntity.ok(personaOutputDTO);
     }
 }
