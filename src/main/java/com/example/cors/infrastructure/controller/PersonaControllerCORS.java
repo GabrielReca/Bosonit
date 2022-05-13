@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class PersonaController {
+@RequestMapping("/cors")
+public class PersonaControllerCORS {
 
     @Autowired
     PersonaService ps;

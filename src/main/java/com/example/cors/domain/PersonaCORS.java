@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "persona", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
-public class Persona implements Serializable {
+public class PersonaCORS implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class Persona implements Serializable {
     @Column
     private Date termination_date;
 
-    public Persona(PersonaInputDTO personaDTO)
+    public PersonaCORS(PersonaInputDTO personaDTO)
     {
         setUsuario(personaDTO.getUsuario());
         setPassword(personaDTO.getPassword());

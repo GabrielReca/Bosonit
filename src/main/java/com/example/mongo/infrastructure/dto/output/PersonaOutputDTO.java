@@ -1,6 +1,6 @@
-package com.example.cors.infrastructure.dto.output;
+package com.example.mongo.infrastructure.dto.output;
 
-import com.example.cors.domain.PersonaCORS;
+import com.example.mongo.domain.PersonaMONGO;
 import lombok.*;
 
 import java.io.Serializable;
@@ -26,7 +26,7 @@ public class PersonaOutputDTO implements Serializable {
     private Date termination_date;
 
 
-    public PersonaOutputDTO(PersonaCORS persona)
+    public PersonaOutputDTO(PersonaMONGO persona)
     {
         setId(persona.getId());
         setUsuario(persona.getUsuario());

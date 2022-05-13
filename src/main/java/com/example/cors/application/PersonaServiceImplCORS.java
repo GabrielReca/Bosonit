@@ -1,10 +1,10 @@
 package com.example.cors.application;
 
 import com.example.cors.application.port.PersonaService;
-import com.example.cors.domain.Persona;
+import com.example.cors.domain.PersonaCORS;
 import com.example.cors.infrastructure.dto.input.PersonaInputDTO;
 import com.example.cors.infrastructure.dto.output.PersonaOutputDTO;
-import com.example.cors.infrastructure.repository.PersonaRepository;
+import com.example.cors.infrastructure.repository.PersonaRepositoryCORS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PersonaServiceImpl implements PersonaService {
+public class PersonaServiceImplCORS implements PersonaService {
 
     @Autowired
-    PersonaRepository pr;
+    PersonaRepositoryCORS pr;
 
     @Override
     public PersonaOutputDTO anhadirPersona(PersonaInputDTO personaInputDTO) throws Exception {
@@ -24,7 +24,7 @@ public class PersonaServiceImpl implements PersonaService {
         else if(personaInputDTO.getUsuario().length() > 10 || personaInputDTO.getUsuario().length() < 6)
             throw new Exception(("longitud del usuario no puede ser superior a 10 caracteres"));
         else {
-            Persona persona = new Persona(personaInputDTO);
+            PersonaCORS persona = new PersonaCORS(personaInputDTO);
             pr.save(persona);
             PersonaOutputDTO personaDtoOuput = new PersonaOutputDTO(persona);
             return personaDtoOuput;
@@ -33,10 +33,10 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public List<PersonaOutputDTO> busquedaTodos() {
-        List<Persona> lista = (List<Persona>) pr.findAll();
+        List<PersonaCORS> lista = (List<PersonaCORS>) pr.findAll();
         List<PersonaOutputDTO> listaOutput = new ArrayList<>();
 
-        for(Persona i: lista)
+        for(PersonaCORS i: lista)
         {
             PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(i);
             listaOutput.add(personaOutputDTO);
