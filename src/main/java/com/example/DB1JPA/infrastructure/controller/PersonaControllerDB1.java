@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,77 +18,77 @@ import java.util.List;
 @RequestMapping("/DB1/persona")
 public class PersonaControllerDB1 {
 
-    @Autowired
-    PersonaServiceDB1 ps;
+  @Autowired
+  PersonaServiceDB1 ps;
 
-    private static final String BEAN_NO_ENCONTRADO = "bean no encontrado";
+  private static final String BEAN_NO_ENCONTRADO = "bean no encontrado";
 
-    @GetMapping("/busqueda/id/{id}")
-    public ResponseEntity<PersonaOutputDTO> busquedaID(@PathVariable int id){
-        PersonaDB1 persona;
-        try{
-            persona = ps.buscarPorID(id);
-        }catch (Exception e){
-            throw new BeanNotFoundException(BEAN_NO_ENCONTRADO);
-        }
-        return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  @GetMapping("/busqueda/id/{id}")
+  public ResponseEntity<PersonaOutputDTO> busquedaID(@PathVariable int id) {
+
+    PersonaDB1 persona;
+    try {
+      persona = ps.buscarPorID(id);
+    } catch (Exception e) {
+      throw new BeanNotFoundException(BEAN_NO_ENCONTRADO);
     }
+    return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  }
 
-    @GetMapping("/busqueda/todos")
-    public ResponseEntity<List<PersonaOutputDTO>> busquedaTodos() throws ClassNotFoundException {
-        List<PersonaDB1> lista = ps.busquedaTodos();
-        List<PersonaOutputDTO> listaOutput = new ArrayList<>();
-        for(PersonaDB1 i: lista){
-            PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(i);
-            listaOutput.add(personaOutputDTO);
-        }
-        return ResponseEntity.ok(listaOutput);
-    }
+  @GetMapping("/busqueda/todos")
+  public ResponseEntity<List<PersonaOutputDTO>> busquedaTodos() throws ClassNotFoundException {
 
-    @GetMapping("/busqueda/usuario/{usuario}")
-    public ResponseEntity<PersonaOutputDTO> busquedaTodos(@PathVariable String usuario){
-        PersonaDB1 persona;
-        try{
-            persona = ps.busquedaUsuario(usuario);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(null);
-        }
-        return ResponseEntity.ok(new PersonaOutputDTO(persona));
+    List<PersonaDB1> lista = ps.busquedaTodos();
+    List<PersonaOutputDTO> listaOutput = new ArrayList<>();
+    for (PersonaDB1 i : lista) {
+      PersonaOutputDTO personaOutputDTO = new PersonaOutputDTO(i);
+      listaOutput.add(personaOutputDTO);
     }
+    return ResponseEntity.ok(listaOutput);
+  }
 
-    @PutMapping("/modificar/{id}")
-    public ResponseEntity<PersonaOutputDTO> modificarPersona(@PathVariable int id, @RequestBody PersonaInputDTO personaDto)
-    {
-        PersonaDB1 persona;
-        try {
-            persona = ps.modificarPersona(id, personaDto);
-        } catch (Exception e)
-        {
-            throw new UnprocessableException("faltan campos sin insertar");
-        }
-        return ResponseEntity.ok(new PersonaOutputDTO(persona));
-    }
+  @GetMapping("/busqueda/usuario/{usuario}")
+  public ResponseEntity<PersonaOutputDTO> busquedaTodos(@PathVariable String usuario) {
 
-    @PostMapping("/anhadir")
-    public ResponseEntity<PersonaOutputDTO> anhadirPersona(@RequestBody PersonaInputDTO personaInputDTO) {
-        PersonaDB1 persona;
-        try {
-            persona = ps.anhadirPersona(personaInputDTO);
-        } catch (Exception e) {
-            throw new UnprocessableException("faltan campos sin insertar");
-        }
-        return ResponseEntity.ok(new PersonaOutputDTO(persona));
+    PersonaDB1 persona;
+    try {
+      persona = ps.busquedaUsuario(usuario);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
     }
+    return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  }
 
-    @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<PersonaOutputDTO> borrarPersona(@PathVariable Integer id){
-        PersonaDB1 persona;
-        try {
-            persona = ps.eliminarUsuario(id);
-        }catch (Exception e)
-        {
-            throw new BeanNotFoundException(BEAN_NO_ENCONTRADO);
-        }
-        return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  @PutMapping("/modificar/{id}")
+  public ResponseEntity<PersonaOutputDTO> modificarPersona(@PathVariable int id, @Valid @RequestBody PersonaInputDTO personaDto) {
+
+    PersonaDB1 persona;
+    try {
+      persona = ps.modificarPersona(id, personaDto);
+    } catch (Exception e) {
+      throw new UnprocessableException("faltan campos sin insertar");
     }
+    return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  }
+
+  @PostMapping("/anhadir")
+  public ResponseEntity<PersonaOutputDTO> anhadirPersona(@Valid @RequestBody PersonaInputDTO personaInputDTO) {
+
+    PersonaDB1 persona;
+    try {
+      persona = ps.anhadirPersona(personaInputDTO);
+    } catch (Exception e) {
+      throw new UnprocessableException("faltan campos sin insertar");
+    }
+    return ResponseEntity.ok(new PersonaOutputDTO(persona));
+  }
+
+  @DeleteMapping("/borrar/{id}")
+  public ResponseEntity<Void> borrarPersona(@PathVariable Integer id) {
+
+    ps.eliminarUsuario(id);
+
+    return ResponseEntity.noContent().build();
+  }
+
 }

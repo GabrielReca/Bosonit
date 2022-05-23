@@ -7,14 +7,16 @@ import java.util.List;
 
 public interface PersonaServiceDB1 {
 
+  PersonaDB1 anhadirPersona(PersonaInputDTO personaInputDTO) throws ClassNotFoundException;
 
-    PersonaDB1 anhadirPersona(PersonaInputDTO personaInputDTO) throws ClassNotFoundException;
-    PersonaDB1 modificarPersona(int id, PersonaInputDTO personaInputDTO) throws ClassNotFoundException;
-    PersonaDB1 buscarPorID(Integer id) throws ClassNotFoundException;
+  PersonaDB1 modificarPersona(int id, PersonaInputDTO personaInputDTO) throws ClassNotFoundException;
 
-    List<PersonaDB1> busquedaTodos() throws ClassNotFoundException;
-    PersonaDB1 busquedaUsuario(String usuario) throws ClassNotFoundException;
+  PersonaDB1 buscarPorID(Integer id) throws ClassNotFoundException;
 
-    PersonaDB1 eliminarUsuario(Integer id) throws ClassNotFoundException;
+  List<PersonaDB1> busquedaTodos() throws ClassNotFoundException;
+
+  PersonaDB1 busquedaUsuario(String usuario) throws ClassNotFoundException;
+
+  void eliminarUsuario(Integer id);
 
 }
