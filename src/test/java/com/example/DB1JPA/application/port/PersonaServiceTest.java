@@ -3,7 +3,6 @@ package com.example.DB1JPA.application.port;
 import com.example.DB1JPA.application.PersonaServiceImplDB1;
 import com.example.DB1JPA.domain.PersonaDB1;
 import com.example.DB1JPA.infrastructure.dto.input.PersonaInputDTO;
-import com.example.DB1JPA.infrastructure.dto.output.PersonaOutputDTO;
 import com.example.DB1JPA.infrastructure.repository.PersonaRepositoryDB1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +26,6 @@ class PersonaServiceTest {
     private PersonaDB1 persona;
     private PersonaInputDTO personaInputDTO;
 
-    private PersonaOutputDTO personaOutputDTO;
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -38,52 +35,51 @@ class PersonaServiceTest {
         personaInputDTO.setUsuario("adsadsad");
         personaInputDTO.setActive(true);
         personaInputDTO.setCity("b");
-        personaInputDTO.setCompany_email("c");
-        personaInputDTO.setPersonal_email("d");
+        personaInputDTO.setCompanyEmail("c");
+        personaInputDTO.setPersonalEmail("d");
         personaInputDTO.setName("e");
         personaInputDTO.setSurname("f");
-        personaInputDTO.setCreated_date(java.sql.Date.valueOf("2002-02-02"));
-        personaInputDTO.setImagen_url("g");
-        personaInputDTO.setTermination_date(java.sql.Date.valueOf("2002-02-04"));
+        personaInputDTO.setCreatedDate(java.sql.Date.valueOf("2002-02-02"));
+        personaInputDTO.setImagenUrl("g");
+        personaInputDTO.setTerminationDate(java.sql.Date.valueOf("2002-02-04"));
 
         persona = new PersonaDB1(personaInputDTO);
-        personaOutputDTO = new PersonaOutputDTO(persona);
     }
 
     @Test
-    void anhadirPersona() throws Exception {
-        when(personaService.anhadirPersona(personaInputDTO)).thenReturn(personaOutputDTO);
+    void anhadirPersona() throws ClassNotFoundException {
+        when(personaService.anhadirPersona(personaInputDTO)).thenReturn(persona);
         assertNotNull(personaService.anhadirPersona(personaInputDTO));
     }
 
     @Test
-    void modificarPersona() throws Exception {
-        when(personaService.modificarPersona(personaInputDTO.getId(),personaInputDTO)).thenReturn(personaOutputDTO);
+    void modificarPersona() throws ClassNotFoundException {
+        when(personaService.modificarPersona(personaInputDTO.getId(),personaInputDTO)).thenReturn(persona);
         assertNotNull(personaService.modificarPersona(personaInputDTO.getId(),personaInputDTO));
     }
 
     @Test
-    void buscarPorID() throws Exception {
-        when(personaService.buscarPorID(personaInputDTO.getId())).thenReturn(personaOutputDTO);
+    void buscarPorID() throws ClassNotFoundException {
+        when(personaService.buscarPorID(personaInputDTO.getId())).thenReturn(persona);
         assertNotNull(personaService.buscarPorID(personaInputDTO.getId()));
     }
 
     @Test
     void busquedaTodos() {
-        when(personaService.busquedaTodos()).thenReturn(Arrays.asList(personaOutputDTO));
+        when(personaService.busquedaTodos()).thenReturn(Arrays.asList(persona));
         assertNotNull(personaService.busquedaTodos());
     }
 
     @Test
-    void busquedaUsuario() throws Exception {
-        when(personaService.busquedaUsuario(personaInputDTO.getUsuario())).thenReturn(personaOutputDTO);
+    void busquedaUsuario() throws ClassNotFoundException {
+        when(personaService.busquedaUsuario(personaInputDTO.getUsuario())).thenReturn(persona);
         assertNotNull(personaService.busquedaUsuario(personaInputDTO.getUsuario()));
     }
 
     @Test
-    void eliminarUsuario() throws Exception {
+    void eliminarUsuario() throws ClassNotFoundException {
         System.out.println(personaInputDTO.getId());
-        when(personaService.eliminarUsuario(personaInputDTO.getId())).thenReturn(personaOutputDTO);
+        when(personaService.eliminarUsuario(personaInputDTO.getId())).thenReturn(persona);
         assertNotNull(personaService.eliminarUsuario(personaInputDTO.getId()));
     }
 }

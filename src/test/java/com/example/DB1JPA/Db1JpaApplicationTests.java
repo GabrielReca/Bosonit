@@ -1,4 +1,4 @@
-package com.example.BS9;
+package com.example.DB1JPA;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

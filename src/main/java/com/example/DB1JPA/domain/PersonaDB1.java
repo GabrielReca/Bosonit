@@ -18,28 +18,28 @@ public class PersonaDB1 implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "usuario")
     private String usuario;
-    @Column
+    @Column(name = "password")
     private String password;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "surname")
     private String surname;
-    @Column
-    private String company_email;
-    @Column
-    private String personal_email;
-    @Column
+    @Column(name = "company_email")
+    private String companyEmail;
+    @Column(name = "personal_email")
+    private String personalEmail;
+    @Column(name = "city")
     private String city;
-    @Column
+    @Column(name = "active")
     private boolean active;
-    @Column
-    private Date created_date;
-    @Column
-    private String imagen_url;
-    @Column
-    private Date termination_date;
+    @Column(name = "created_date")
+    private Date createdDate;
+    @Column(name = "imagen_url")
+    private String imagenUrl;
+    @Column(name = "termination_date")
+    private Date terminationDate;
 
     public PersonaDB1(PersonaInputDTO personaDTO)
     {
@@ -47,12 +47,12 @@ public class PersonaDB1 implements Serializable {
         setPassword(personaDTO.getPassword());
         setName(personaDTO.getName());
         setSurname(personaDTO.getSurname());
-        setCompany_email(personaDTO.getCompany_email());
-        setPersonal_email(personaDTO.getPersonal_email());
+        setCompanyEmail(personaDTO.getCompanyEmail());
+        setPersonalEmail(personaDTO.getPersonalEmail());
         setCity(personaDTO.getCity());
         setActive(personaDTO.isActive());
-        setCreated_date(personaDTO.getCreated_date());
-        setImagen_url(personaDTO.getImagen_url());
-        setTermination_date(personaDTO.getTermination_date());
+        setCreatedDate(personaDTO.getCreatedDate());
+        setImagenUrl(personaDTO.getImagenUrl());
+        setTerminationDate(personaDTO.getTerminationDate());
     }
 }
